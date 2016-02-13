@@ -44,6 +44,8 @@ public class SierpinskiGasket {
 			}
 			save(triangles, i);
 		}
+		
+		System.out.println("Done!");
 	}
 	public static void save(ArrayList<Triangle> triangles, int stage) {
 		BufferedImage img = new BufferedImage(IMAGE_SIZE, IMAGE_SIZE, BufferedImage.TYPE_INT_ARGB);

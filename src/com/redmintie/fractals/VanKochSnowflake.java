@@ -55,6 +55,8 @@ public class VanKochSnowflake {
 			}
 			save(lines, i);
 		}
+		
+		System.out.println("Done!");
 	}
 	public static void save(ArrayList<Line> lines, int stage) {
 		BufferedImage img = new BufferedImage(IMAGE_SIZE, IMAGE_SIZE, BufferedImage.TYPE_INT_ARGB);
