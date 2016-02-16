@@ -23,7 +23,7 @@ public class CustomFractal {
 		
 		for (int i = 1; i <= iterations; i++) {
 			System.out.println("Iteration " + i + "...");
-			for (int j = 0; j < squares.size(); j += 4) {
+			for (int j = 0; j < squares.size(); j += 5) {
 				Square square = squares.remove(j);
 				double m1 = square.x + square.size / 3;
 				double n1 = square.y + square.size / 3;
@@ -31,10 +31,11 @@ public class CustomFractal {
 				double n2 = square.y + square.size / 3 * 2;
 				double size = square.size / 3;
 				
-				squares.add(j, new Square(square.x, square.y, size));
+				squares.add(j, new Square(m1, square.y, size));
+				squares.add(j, new Square(square.x, n1, size));
 				squares.add(j, new Square(m1, n1, size));
-				squares.add(j, new Square(m2, n2, size));
-				squares.add(j, new Square(square.x, n2, size));
+				squares.add(j, new Square(m2, n1, size));
+				squares.add(j, new Square(m1, n2, size));
 			}
 			save(squares, i);
 		}
@@ -70,7 +71,7 @@ public class CustomFractal {
 			this.size = size;
 		}
 		public void draw(Graphics2D g) {
-			g.fillRect((int)x, (int)y, (int)size, (int)size);
+			g.fillRect((int)x, (int)y, (int)size + 1, (int)size + 1);
 		}
 	}
 }
