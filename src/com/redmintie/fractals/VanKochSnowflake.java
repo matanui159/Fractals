@@ -14,7 +14,7 @@ public class VanKochSnowflake {
 	public static final int IMAGE_SIZE = 1000;
 	public static final int TRIANGLE_SIZE = 500;
 	public static final double TRIANGLE_HEIGHT = Math.sqrt(0.75);
-	public static final int LINE_THICKNESS = 1;
+	public static final int LINE_THICKNESS = 3;
 	public static void main(String[] args) {
 		int iterations = Util.getIterations();
 		System.out.println("Iteration 0...");
@@ -59,12 +59,16 @@ public class VanKochSnowflake {
 		System.out.println("Done!");
 	}
 	public static void save(ArrayList<Line> lines, int stage) {
+		save(lines, stage, 1, "snowflake");
+		save(lines, stage, LINE_THICKNESS, "snowflake-thick");
+	}
+	public static void save(ArrayList<Line> lines, int stage, int thickness, String folder) {
 		BufferedImage img = new BufferedImage(IMAGE_SIZE, IMAGE_SIZE, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = img.createGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setBackground(Color.WHITE);
 		g.setColor(Color.BLACK);
-		g.setStroke(new BasicStroke(LINE_THICKNESS));
+		g.setStroke(new BasicStroke(thickness));
 		
 		g.clearRect(0, 0, IMAGE_SIZE, IMAGE_SIZE);
 		for (Line line : lines) {
@@ -73,7 +77,7 @@ public class VanKochSnowflake {
 		g.drawString("STAGE " + stage, 30, 30);
 		
 		try {
-			ImageIO.write(img, "PNG", Util.createFile("fractals/snowflake/snowflake-" + stage + ".png"));
+			ImageIO.write(img, "PNG", Util.createFile("fractals/" + folder +"/snowflake-" + stage + ".png"));
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
